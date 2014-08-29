@@ -1,0 +1,215 @@
+import java.awt.*;
+import java.awt.event.*;
+class Calc extends Frame implements ActionListener
+{
+	MenuBar mbr;
+	Menu m1,m2,m3;
+	MenuItem mi1,mi2,mi3,mi4,mi5,mi6,mi7,mi8,mi9,mi10,mi11,mi12,mi13,mi14,mi15,mi16,mi17,mi18,mi19;
+	Button b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,b11,b12,b13,b14,b15,b16;
+	Label ta;
+	Font f1=null;
+	String str = "0";
+	String res="";
+	double sum=0;
+	String q1="";
+	String q2="";
+	char a1;
+	Calc()
+	{
+		addWindowListener(new WindowAdapter()
+			{
+				public void windowClosing(WindowEvent we)
+				{
+					System.exit(0);
+				}
+			});
+		f1=new Font("Bauhaus 93",Font.BOLD,20);
+		setForeground(Color.BLACK);
+		b1=new Button("1");
+		b2=new Button("2");
+		b3=new Button("3");
+		b4=new Button("4");
+		b5=new Button("5");
+		b6=new Button("6");
+		b7=new Button("7");
+		b8=new Button("8");
+		b9=new Button("9");
+		b0=new Button("0");
+		b11=new Button("=");
+		b12=new Button("-");
+		b13=new Button("/");
+		b14=new Button("*");
+		b15=new Button("+");
+		b16=new Button("C");
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		b4.addActionListener(this);
+		b5.addActionListener(this);
+		b6.addActionListener(this);
+		b7.addActionListener(this);
+		b8.addActionListener(this);
+		b9.addActionListener(this);
+		b0.addActionListener(this);
+		b11.addActionListener(this);
+		b12.addActionListener(this);
+		b13.addActionListener(this);
+		b14.addActionListener(this);
+		b15.addActionListener(this);
+		ta=new Label(str,Label.RIGHT);
+		add(b1);
+		add(b2);
+		add(b3);
+		add(b4);
+		add(b5);
+		add(b6);
+		add(b7);
+		add(b8);
+		add(b9);
+		add(b0);
+		add(b11);
+		add(b12);
+		add(b13);
+		add(b14);
+		add(b15);
+		add(b16);
+		add(ta);
+		b16.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				ta.setText("");
+			}
+		});
+		setSize(203,300);
+		setResizable(false);
+		mbr=new MenuBar();
+		m1=new Menu("View");
+		mbr.add(m1);
+		m2=new Menu("Edit");
+		mbr.add(m2);
+		m3=new Menu("Help");
+		mbr.add(m3);
+		m1.add(mi1=new MenuItem("Standard"));
+		m1.add(mi2=new MenuItem("Scientific"));
+		m1.add(mi3=new MenuItem("Programmer"));
+		m1.add(mi4=new MenuItem("Statistics"));
+		m1.add(mi5=new MenuItem("-"));
+		m1.add(mi6=new MenuItem("History"));
+		m1.add(mi7=new MenuItem("Digit Grouping"));
+		m1.add(mi8=new MenuItem("-"));
+		m1.add(mi9=new MenuItem("Basic"));
+		m1.add(mi10=new MenuItem("Unit conversion"));
+		m1.add(mi11=new MenuItem("Date calculation"));
+		m1.add(mi12=new MenuItem("Worksheets"));
+		m2.add(mi13=new MenuItem("Copy"));
+		m2.add(mi14=new MenuItem("Paste"));
+		m2.add(mi15=new MenuItem("-"));
+		m2.add(mi16=new MenuItem("History"));
+		m3.add(mi17=new MenuItem("View Help"));
+		m3.add(mi18=new MenuItem("-"));
+		m3.add(mi19=new MenuItem("About Calculator"));
+		setMenuBar(mbr);
+		setVisible(true);
+		setLayout(null);
+		ta.setBounds(0,30,200,100);
+		b7.setBounds(0,100,50,50);
+		b8.setBounds(50,100,50,50);
+		b9.setBounds(100,100,50,50);
+		b13.setBounds(150,100,50,50);
+		b4.setBounds(0,150,50,50);
+		b5.setBounds(50,150,50,50);
+		b6.setBounds(100,150,50,50);
+		b14.setBounds(150,150,50,50);
+		b1.setBounds(0,200,50,50);
+		b2.setBounds(50,200,50,50);
+		b3.setBounds(100,200,50,50);
+		b12.setBounds(150,200,50,50);
+		b0.setBounds(0,250,50,50);
+		b16.setBounds(50,250,50,50);
+		b11.setBounds(100,250,50,50);
+		b15.setBounds(150,250,50,50);
+		ta.setFont(f1);
+		b1.setFont(f1);
+		b2.setFont(f1);
+		b3.setFont(f1);
+		b4.setFont(f1);
+		b5.setFont(f1);
+		b6.setFont(f1);
+		b7.setFont(f1);
+		b8.setFont(f1);
+		b9.setFont(f1);
+		b0.setFont(f1);
+		b11.setFont(f1);
+		b12.setFont(f1);
+		b13.setFont(f1);
+		b14.setFont(f1);
+		b15.setFont(f1);
+		b16.setFont(f1);
+	}
+	public void actionPerformed(ActionEvent ae)
+	{
+		double x1=0;
+		double abc=0;
+		String str=ae.getActionCommand();
+		if(str.equals("1")||str.equals("2")||str.equals("3")||str.equals("4")||str.equals("5")||str.equals("6")||str.equals("7")||str.equals("8")||str.equals("9")||str.equals("0"))
+		{
+			res=res+str;
+			ta.setText(res);
+		}
+		else if(str.equals("+")||str.equals("-")||str.equals("*")||str.equals("/")||str.equals("="))
+		{
+			q2=str;
+			if (q1.equals(""))
+			{
+				x1=Double.parseDouble(ta.getText());
+				sum+=x1;
+				res="";
+				q1=q2;
+			}
+			else if(q1.equals("+"))
+			{
+				abc=Double.parseDouble(ta.getText());
+				sum+=abc;
+				ta.setText(""+sum);
+				res="";
+				q1=q2;
+			}
+			else if(q1.equals("-"))
+			{
+				abc=Double.parseDouble(ta.getText());
+				sum-=abc;
+				ta.setText(""+sum);
+				res="";
+				q1=q2;
+			}
+			else if(q1.equals("*"))
+			{
+				abc=Double.parseDouble(ta.getText());
+				sum*=abc;
+				ta.setText(""+sum);
+				res="";
+				q1=q2;
+			}
+			else if(q1.equals("/"))
+			{
+				abc=Double.parseDouble(ta.getText());
+				sum/=abc;
+				ta.setText(""+sum);
+				res="";
+				q1=q2;
+			}
+			else if(q1.equals("="))
+			{
+				abc=Double.parseDouble(ta.getText());
+				sum=abc;
+				ta.setText(""+sum);
+				q1=q2;
+			}
+		}
+	}
+	public static void main(String args[])
+	{
+		 Calc f= new Calc();
+	}
+}
